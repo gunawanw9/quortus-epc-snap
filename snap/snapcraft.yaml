@@ -12,6 +12,7 @@ confinement: devmode
 apps:
   ran:
     command: ran-launcher
+    daemon: simple
   rancli:
     command: rancli-launcher
 
