@@ -28,6 +28,8 @@ parts:
     plugin: dump
     source: ../ran_V3_97.gz
     source-type: tar
+    # don't copy missing shared libs
+    build-attributes: [ no-system-libraries, ]
     install: |
       ln -sf ran $SNAPCRAFT_PART_INSTALL/rancli
     stage:
