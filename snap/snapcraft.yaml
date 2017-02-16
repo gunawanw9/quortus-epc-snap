@@ -1,0 +1,38 @@
+name: quortus-epc-lool
+version: 3.97
+summary: Quortus ECX core network for cellular network
+description: |
+  Quortus ECX Core is a fully-featured virtualized core for cellular networks.
+  It supports 4G LTE, 3G and GSM radio networks with VoLTE / SIP voice, packet
+  data and SMS, either in a standalone deployment or with operator interconnect.
+  ECX Core is designed for scalability.
+grade: devel
+confinement: devmode
+
+apps:
+  ran:
+    command: ran-launcher
+  rancli:
+    command: rancli-launcher
+
+parts:
+  debs:
+    plugin: nil
+    # this requires a system with "dpkg --add-architecture i386 && apt update"
+    stage-packages: ["libstdc++6:i386", ]
+
+  ran:
+    plugin: dump
+    source: ../ran_V3_97.gz
+    source-type: tar
+    install: |
+      ln -sf ran $SNAPCRAFT_PART_INSTALL/rancli
+    stage:
+      - ran
+      - rancli
+      - lib/*.so*
+
+  glue:
+    plugin: dump
+    source: glue
+
