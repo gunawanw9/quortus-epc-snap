@@ -12,13 +12,13 @@ setup_iptables() {
     local out_if="$(ip route | sed -n '/^default /s/.* dev \([^ ]*\).*/\1/p')"
 
     # prepare chain
-    iptables -t nat -N quortus-postrouting || true
-    iptables -t nat -F quortus-postrouting || true
+    iptables -t nat -N quortus-postrouting 2>/dev/null || true
+    iptables -t nat -F quortus-postrouting 2>/dev/null || true
     # NAT mode
     iptables -t nat -A quortus-postrouting -o "$out_if" -j MASQUERADE
     # jump from main chain to this one
     # TODO add source IP specifier
-    iptables -t nat -D POSTROUTING -j quortus-postrouting || true
+    iptables -t nat -D POSTROUTING -j quortus-postrouting 2>/dev/null || true
     iptables -t nat -A POSTROUTING -j quortus-postrouting
 
     # TODO add forward rules
