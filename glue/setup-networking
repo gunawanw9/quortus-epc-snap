@@ -15,7 +15,7 @@ setup_iptables() {
     iptables -N quortus-postrouting || true
     iptables -F quortus-postrouting || true
     # NAT mode
-    iptables -A quortus-postrouting -o "$out_if" -j MASQUERADE
+    iptables -t nat -A quortus-postrouting -o "$out_if" -j MASQUERADE
     # jump from main chain to this one
     # TODO add source IP specifier
     iptables -t nat -D POSTROUTING -j quortus-postrouting || true
