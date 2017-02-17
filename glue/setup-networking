@@ -12,8 +12,8 @@ setup_iptables() {
     local out_if="$(ip route | sed -n '/^default /s/.* dev \([^ ]*\).*/\1/p')"
 
     # prepare chain
-    iptables -N quortus-postrouting || true
-    iptables -F quortus-postrouting || true
+    iptables -t nat -N quortus-postrouting || true
+    iptables -t nat -F quortus-postrouting || true
     # NAT mode
     iptables -t nat -A quortus-postrouting -o "$out_if" -j MASQUERADE
     # jump from main chain to this one
