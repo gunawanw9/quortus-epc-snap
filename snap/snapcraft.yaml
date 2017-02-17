@@ -17,6 +17,8 @@ apps:
     daemon: simple
   rancli:
     command: rancli-launcher
+  setup-networking:
+    command: setup-networking
 
 parts:
   debs:
