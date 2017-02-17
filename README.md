@@ -27,26 +27,33 @@ sudo snap install --devmode --beta quortus-epc-lool
 
 # Setup and operation
 
-To check your system is configured properly:
+Check your system is configured properly:
 ```shell
 quortus-epc-lool.check-sys
 ```
-Upon installation, the `ran` daemon is launched and creates a config file under
-`/var/snap/quortus-epc-lool/current`.
+
+To achieve basic network setup (mainly forwarding and NAT) run the following
+command and add it to your startup scripts:
+```shell
+sudo quortus-epc-lool.setup-networking
+```
+
+Upon installation, the `ran` daemon is launched. It creates a config file under
+`/var/snap/quortus-epc-lool/current` which you may edit; restart the service to
+pick up changes:
+```shell
+sudo vi /var/snap/quortus-epc-lool/current/ran.cfg
+sudo systemctl restart snap.quortus-epc-lool.ran
+```
 
 Provision your license with the `rancli` tool:
 ```shell
 quortus-epc-lool.rancli
 ```
 
-Check the service is running or its output with:
+Check the service is running or follow its output with:
 ```shell
-sudo journalctl -u snap.quortus-epc-lool.ran
 sudo systemctl status snap.quortus-epc-lool.ran
-```
-
-Restart the service with:
-```shell
-sudo systemctl restart snap.quortus-epc-lool.ran
+sudo journalctl -u snap.quortus-epc-lool.ran -f
 ```
 
