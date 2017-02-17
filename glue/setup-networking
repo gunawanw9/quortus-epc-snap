@@ -1,0 +1,32 @@
+#!/bin/sh
+
+set -e
+
+# IP forwarding is required both for NAT and routed use cases
+enable_forwarding() {
+    sysctl net.ipv4.ip_forward=1
+}
+
+# create iptables chains hooking into main ones
+setup_iptables() {
+    local out_if="$(ip route | sed -n '/^default /s/.* dev \([^ ]*\).*/\1/p')"
+
+    # prepare chain
+    iptables -X quortus-postrouting-tmp || true
+    iptables -N quortus-postrouting-tmp
+    # NAT mode
+    iptables -A quortus-postrouting-tmp -o $(out_if) -j MASQUERADE
+    # rename to target name
+    iptables -X quortus-postrouting || true
+    iptables -E quortus-postrouting-tmp quortus-postrouting
+    # jump from main chain to this one
+    iptables -t nat -D POSTROUTING -j quortus-postrouting || true
+    # TODO add source IP specifier
+    iptables -t nat -A POSTROUTING -j quortus-postrouting
+
+    # TODO add forward rules
+}
+
+enable_forwarding
+setup_iptables
+
