@@ -21,11 +21,23 @@ apps:
     command: setup-networking
 
 parts:
-  debs:
+  # debs part require installation of i386 packages
+  i386-arch:
     plugin: nil
-    # this requires a system with "dpkg --add-architecture i386 && apt update"
+    build: |
+      set -e
+      if ! dpkg --print-foreign-architectures | grep -qxF i386; then
+          sudo dpkg --add-architecture i386
+          sudo apt update
+      fi
+
+  # 32-bits C/C++ libraries
+  debs:
+    after: [ i386-arch, ]
+    plugin: nil
     stage-packages: ["libstdc++6:i386", ]
 
+  # Quortus ECX prebuilt binaries
   ran:
     plugin: dump
     source: ../ran_V3_97.gz

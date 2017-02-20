@@ -1,12 +1,5 @@
 # Building
 
-This snap should be built on an amd64 system with i386 enabled in APT as to
-pull the 32-bits libstdc++; to do this run:
-```shell
-sudo dpkg --add-architecture i386
-sudo apt update
-```
-
 To build:
 ```shell
 sudo apt install snapcraft
