@@ -85,3 +85,10 @@ sudo systemctl status snap.quortus-epc-lool.ran
 sudo journalctl -u snap.quortus-epc-lool.ran -f
 ```
 
+To start the daemon interactively, stop the service and launch the `ran`
+command of the snap with `snap run`:
+```shell
+sudo systemctl stop snap.quortus-epc-lool.ran
+sudo snap run quortus-epc-lool.ran
+```
+

@@ -8,3 +8,8 @@
    * IP subnets check
    * FORWARD/INPUT/OUTPUT filters
 
+ * licensing server integration
+
+ * snap of aksusbd? needs permission to distribute and seems to require udev
+   rules to operate properly
+
