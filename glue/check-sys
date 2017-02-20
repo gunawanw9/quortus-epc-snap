@@ -40,6 +40,14 @@ ensure_forwarding() {
     return 0
 }
 
+ensure_dongle_support() {
+    if ! dpkg -l aksusbd 2>/dev/null | grep -q ^ii; then
+        echo "Sentinel LDK daemon not installed" >&2
+        return 1
+    fi
+    return 0
+}
+
 if ! ensure_kernel; then
     echo "Kernel tests failed" >&2
     exit 1
@@ -51,4 +59,9 @@ if ! ensure_forwarding; then
     exit 1
 fi
 echo "Forwarding test successful" >&2
+
+if ! ensure_dongle_support; then
+    echo "Dongle support missing" >&2
+    # non-fatal
+fi
 
