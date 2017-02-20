@@ -63,5 +63,7 @@ echo "Forwarding test successful" >&2
 if ! ensure_dongle_support; then
     echo "Dongle support missing" >&2
     # non-fatal
+else
+    echo "Dongle support installed"
 fi
 
