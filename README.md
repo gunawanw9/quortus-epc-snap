@@ -25,6 +25,33 @@ Or from a store:
 sudo snap install --devmode --beta quortus-epc-lool
 ```
 
+## Sentinel LDK daemon
+
+In some installations, depending on the licensing scheme, you might need the
+Sentinel LDK daemon installed on the target system. This is currently only
+available as a .deb, so this is not available for Ubuntu Core but works on
+Ubuntu classic 16.04+.
+
+The daemon is available for Linux after accepting a license at:
+    [https://sentinelcustomer.gemalto.com/sentineldownloads/?o=Linux]
+
+This is a direct link if you've already accepted the license:
+    [ftp://ftp.cis-app.com/pub/hasp/Sentinel_HASP/Runtime_(Drivers)/7.51/Sentinel_LDK_Ubuntu_DEB_Run-time_Installer.tar.gz]
+
+To run the daemon on an `amd64` system, you need the `i386` libc6 package;
+here's how to install it:
+```shell
+sudo dpkg --add-architecture i386
+sudo apt update
+sudo apt install libc6:i386
+```
+
+Install the daemon and check it's running with:
+```shell
+sudo dpkg -i aksusbd_*.deb
+ps ax | egrep '(aksusb|winehasp|hasplmd)'
+```
+
 # Setup and operation
 
 Check your system is configured properly:
