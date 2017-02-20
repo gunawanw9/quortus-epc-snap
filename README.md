@@ -32,11 +32,12 @@ Sentinel LDK daemon installed on the target system. This is currently only
 available as a .deb, so this is not available for Ubuntu Core but works on
 Ubuntu classic 16.04+.
 
-The daemon is available for Linux after accepting a license at:
-    [https://sentinelcustomer.gemalto.com/sentineldownloads/?o=Linux]
+The daemon is available as a `.deb` package inside a tarball after accepting a
+license at:
+<https://sentinelcustomer.gemalto.com/sentineldownloads/?o=Linux>
 
 This is a direct link if you've already accepted the license:
-    [ftp://ftp.cis-app.com/pub/hasp/Sentinel_HASP/Runtime_(Drivers)/7.51/Sentinel_LDK_Ubuntu_DEB_Run-time_Installer.tar.gz]
+<ftp://ftp.cis-app.com/pub/hasp/Sentinel_HASP/Runtime_(Drivers)/7.51/Sentinel_LDK_Ubuntu_DEB_Run-time_Installer.tar.gz>
 
 To run the daemon on an `amd64` system, you need the `i386` libc6 package;
 here's how to install it:
