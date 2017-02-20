@@ -41,10 +41,20 @@ ensure_forwarding() {
 }
 
 ensure_dongle_support() {
+    local process
+
     if ! dpkg -l aksusbd 2>/dev/null | grep -q ^ii; then
         echo "Sentinel LDK daemon not installed" >&2
         return 1
     fi
+
+    for process in \
+        "/usr/sbin/aksusbd" "/usr/sbin/hasplmd -s" "/usr/sbin/winehasp"; do
+        if [ "$(pgrep -c -u root -fx "$process")" != 1 ]; then
+            echo "Process \"$process\" not found" >&2
+            return 1
+        fi
+    done
     return 0
 }
 
@@ -61,9 +71,9 @@ fi
 echo "Forwarding test successful" >&2
 
 if ! ensure_dongle_support; then
-    echo "Dongle support missing" >&2
-    # non-fatal
+    echo "Dongle support not installed or not running" >&2
+    # non-fatal; might be installed manually or using license server
 else
-    echo "Dongle support installed"
+    echo "Dongle support installed and running"
 fi
 
