@@ -104,3 +104,8 @@ To enable logs, use this `rancli` command:
 set oam mon=on
 ```
 
+To debug eNodeB to EPC connection issues, use `sudo netstat -anp | grep LISTEN`
+to see all listening sockets. Note that support for SCTP sockets is missing
+from Ubuntu's 16.04 net-tools; installing the .deb from zesty works fine:
+<http://launchpadlibrarian.net/301885046/net-tools_1.60+git20161116.90da8a0-1ubuntu1_amd64.deb>
+
