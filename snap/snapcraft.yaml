@@ -17,8 +17,6 @@ apps:
     daemon: simple
   rancli:
     command: rancli-launcher
-  setup-networking:
-    command: setup-networking
 
 parts:
   # debs part require installation of i386 packages

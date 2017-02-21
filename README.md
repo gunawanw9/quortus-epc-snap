@@ -53,12 +53,6 @@ Check your system is configured properly:
 /snap/quortus-epc-lool/current/check-sys
 ```
 
-IPv4 forwarding needs to be enabled on boot; consider adding the
-`setup-networking` script to `/etc/rc.local` or run:
-```shell
-sudo quortus-epc-lool.setup-networking
-```
-
 Upon installation, the `ran` daemon is launched. It creates a config file under
 `/var/snap/quortus-epc-lool/current` which you may edit; restart the service to
 pick up changes:
