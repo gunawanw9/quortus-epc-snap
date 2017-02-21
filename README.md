@@ -67,10 +67,24 @@ sudo vi /var/snap/quortus-epc-lool/current/ran.cfg
 sudo systemctl restart snap.quortus-epc-lool.ran
 ```
 
-Provision your license with the `rancli` tool:
+## RAN cli
+
+An interactive RAN shell is available via the `rancli` tool:
 ```shell
 quortus-epc-lool.rancli
 ```
+
+The first time you connect should prompt you to accept the license.
+
+## Provisioning of USB dongle
+
+If you're using an USB dongle licensing, you might have to provision it with
+a long token as input to the RAN cli shell:
+```shell
+upd license token=xyz
+```
+
+## Diagnosis and debugging
 
 Check the service is running or follow its output with:
 ```shell
