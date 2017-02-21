@@ -50,7 +50,7 @@ ps ax | egrep '(aksusb|winehasp|hasplmd)'
 
 Check your system is configured properly:
 ```shell
-quortus-epc-lool.check-sys
+/snap/quortus-epc-lool/current/check-sys
 ```
 
 To achieve basic network setup (mainly forwarding and NAT) run the following
@@ -83,5 +83,10 @@ command of the snap with `snap run`:
 ```shell
 sudo systemctl stop snap.quortus-epc-lool.ran
 sudo snap run quortus-epc-lool.ran
+```
+
+To enable logs, use this `rancli` command:
+```shell
+set oam mon=on
 ```
 
