@@ -4,7 +4,7 @@ set -e
 
 ensure_kernel() {
     local kconfig="/boot/config-`uname -r`"
-    local configs="CONFIG_IP_MULTICAST CONFIG_IP_ROUTER CONFIG_IP_MROUTE CONFIG_NET_IPIP CONFIG_TUN CONFIG_IP_SCTP"
+    local configs="CONFIG_IP_MULTICAST CONFIG_IP_MROUTE CONFIG_NET_IPIP CONFIG_TUN CONFIG_IP_SCTP"
     local conf
     local bail
 
