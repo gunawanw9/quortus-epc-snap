@@ -2,11 +2,7 @@
 
  * confinement
 
- * Networking setup
-   * IPv6 support
-   * IP subnets config for main hooks
-   * IP subnets check
-   * FORWARD/INPUT/OUTPUT filters
+ * IPv6 networking support
 
  * licensing server integration
 
