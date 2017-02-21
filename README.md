@@ -53,8 +53,8 @@ Check your system is configured properly:
 /snap/quortus-epc-lool/current/check-sys
 ```
 
-To achieve basic network setup (mainly forwarding and NAT) run the following
-command and add it to your startup scripts:
+IPv4 forwarding needs to be enabled on boot; consider adding the
+`setup-networking` script to `/etc/rc.local` or run:
 ```shell
 sudo quortus-epc-lool.setup-networking
 ```
