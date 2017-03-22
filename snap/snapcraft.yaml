@@ -10,8 +10,6 @@ grade: devel
 confinement: devmode
 
 apps:
-  check-sys:
-    command: check-sys
   ran:
     command: ran-launcher
     daemon: simple
